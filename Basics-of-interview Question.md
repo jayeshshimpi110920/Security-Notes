@@ -71,6 +71,12 @@ Contain
 16. **What is a secure socket layer (SSL)?**
 Answer: SSL is a cryptographic protocol that provides secure communication between a website and its users.
 
+17. **CSRF (cross-site Request forgery)**
+    its a vulnerability that allows an attacker to trick a user into unknowingly submitting a malicious request to a web application where the user is authenticated. This attack mostly carried out using social engg such as link to tricl the victim into sending a forged request to a server. (its a way of impersonating the user to peform unauthorized actions.) 
+    > **cross-site** - used 2 interacting (trusted website & malicious code)
+    > **request** - request sent from user browers to server, asking to perform some action., CSRF referes to state-changing request that might modify user data, perform action(like bank transfer) or update a user profile.
+    > **Forgery** - refers to  action being performed fradulently or without the users consent.
+
 ---
 
 # Penetration-testing-interview-Question
@@ -93,7 +99,7 @@ and check response and length of output in burpsuite, unexpected results.
    Same as SQl just need to try out XSS payload in user input fields.
    > <script>alert('XSS')</script> if payload execute in brower, XSS exists.
 
-
+3) 
    
 
 
