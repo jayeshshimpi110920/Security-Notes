@@ -1,12 +1,10 @@
 Contain 
 [1. Basic](#Security-Concepts-and-Definitions)
 
-[Example Section](#example-section)
+[2. Penetration testing Question](#Penetration-testing-interview-Question)
 
 
 
-
-#example-section
 
 # Security-Concepts-and-Definitions
 
@@ -66,3 +64,36 @@ Contain
 14. **What is SQL Injection (SQLi)?**  
     **Definition:** SQLi is an attack where an attacker can execute malicious SQL queries against a database by manipulating the user input.  
     **Mitigation:** Using prepared statements and parameterized queries.
+
+15. **SQL injection**
+    its a vulnerabilities that allow an attacker to inject malicious SQL code to access senstivie data.
+
+16. **What is a secure socket layer (SSL)?**
+Answer: SSL is a cryptographic protocol that provides secure communication between a website and its users.
+
+---
+
+# Penetration-testing-interview-Question
+
+
+1. **What is the difference between a vulnerability scan and a penetration test?**
+Answer: A vulnerability scan is an automated process that detects potential vulnerabilities, while a penetration test is a manual process that simulates a real-world attack to exploit vulnerabilities. 
+
+2. **What is Burp Suite?**
+Answer: Burp Suite is a popular tool used for web application penetration testing, providing features such as proxying, scanning, and vulnerability identification.
+
+
+---
+1) **SQL injection - (Repeter)**
+   intercept the proxy and send it to repeter and find parameters that could be susceptible to SQL injection try out different payload
+   > ' OR 1=1; --
+and check response and length of output in burpsuite, unexpected results.
+
+2) **Cross-site scripting(XSS) (Repeter)**
+   Same as SQl just need to try out XSS payload in user input fields.
+   > <script>alert('XSS')</script> if payload execute in brower, XSS exists.
+
+
+   
+
+
