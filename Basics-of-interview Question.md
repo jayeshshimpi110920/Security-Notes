@@ -99,7 +99,12 @@ and check response and length of output in burpsuite, unexpected results.
    Same as SQl just need to try out XSS payload in user input fields.
    > <script>alert('XSS')</script> if payload execute in brower, XSS exists.
 
-3) 
+3) **Cross-site request forgery (CSRF)**
+   from repeter right click from engagement tool go to generate CSRF PoC (if pro version in burpsuite) in communitiy need to do html form tag maually to exploit
+Prevention:
+> * Anti-CSRF token - a unique token is generated for each session or request, this token must be included in state-changing request(like form submissions) and verified by server.
+> * samesite cookies - setting **sameSite** attribute on cookies can help prevent browers from sending cookies with cross-site requestes.
+> * User interaction : requiring user confirmation for sensitive action can add an extra layer of protection
    
 
 
