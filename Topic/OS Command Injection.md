@@ -1,5 +1,6 @@
 ## OS Command Injection
-OS command injection is a critical vulnerability that occurs when an attacker is able to execute arbitrary operating system commands on a server or system due to improper input validation in a web application or system. This vulnerability typically arises when user-supplied input is directly incorporated into system-level commands without proper sanitization.
+OS command injection is a critical vulnerability that occurs when an attacker is able to execute arbitrary operating system commands on a server or system due to improper input validation in a web application or system. This vulnerability typically arises when user-supplied input is directly incorporated into system-level commands without proper sanitization. 
+POV : Command Injection: This occurs when an attacker can inject system commands through web forms or parameters, allowing them to execute commands on the server.
 
 ### Common Scenarios
 * Web Applications: If an application accepts user input and passes it to system commands (e.g., through shell commands or scripts), and if the input is not properly validated or sanitized, an attacker can append malicious commands.
@@ -39,6 +40,28 @@ Here, if the input is not sanitized, an attacker could pass something like:
 ### Tools for Detection
 - **Burp Suite**: You can test for command injection vulnerabilities by injecting special characters like `;`, `&&`, `|`, and variations of OS commands into input fields, observing the application's response.
 - **OWASP ZAP**: Used for automated scanning, including command injection vulnerability detection.
+
+---
+## Identification
+Look for **input fields** where user-supplied data might be passed to system commands, such as a **form** for executing a (ping or traceroute, file uploads, or search functionality).
+Once identified a possible vulnerabilitiy, send burpsuite request to repeater tab, and modify the request and send it multiple times to observe how the server responds.
+
+---
+### Common Payload to try :
+Modify the input fields in the request to inject command sequences that could reveal if the system is vulnerable to command injection.
+
+Linux/Unix-based system
+> ; ls -la <br>
+| id <br>
+&& whoami <br>
+; cat /etc/passwd <br>
+
+Window-based system:
+> | dir <br>
+& whoami <br>
+; type C:\Windows\System32\drivers\etc\hosts
+
+
 
 
 
