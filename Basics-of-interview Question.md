@@ -35,7 +35,9 @@ Contain
 7. **What are false positives and false negatives in security testing?**  
    - **False Positive:** When a security tool flags something as a vulnerability, but it is not an actual risk.  
    - **False Negative:** When a security tool misses a real vulnerability that should have been flagged.
-
+   - **True Negative** A vulnerability scanner reports that there is no SQL injection vulnerability in a web application, and after manual verification, you confirm that there is indeed no SQL injection vulnerability. This is a true negative—the system made a correct assessment.
+   - **True positive** - A true positive occurs when a detection system correctly identifies a real security vulnerability or threat.
+  
 8. **What is the principle of least privilege (PoLP)?**  
    **Definition:** This principle states that users or systems should be granted the minimal level of access necessary to perform their job functions to reduce the attack surface.  
    **Example:** An intern should not have admin access to the company’s critical systems.
