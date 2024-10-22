@@ -49,3 +49,36 @@ The **Transport Layer (Layer 4)** of the OSI Model handles the reliable delivery
 In summary:
 - **Use TCP** when reliability and order matter (e.g., loading a webpage).
 - **Use UDP** when speed is more important than reliability (e.g., watching a live stream).
+
+---
+### **What is a Datagram?**
+
+A **datagram** is a basic unit of data transfer in a **connectionless** communication protocol, specifically in the **User Datagram Protocol (UDP)**. It is a self-contained packet of data that carries enough information to be routed from the sender to the receiver without needing an established connection between the two. Unlike the packets in **TCP**, datagrams are sent without acknowledgment, meaning there's no guarantee of delivery, order, or error-checking.
+
+### Key Characteristics of a Datagram:
+- **Connectionless**: Sent without establishing a prior connection between the sender and receiver.
+- **Independent**: Each datagram is treated independently, with no relation to other datagrams.
+- **Unreliable**: No guarantee that the datagram will reach its destination, and if it does, it may not be in order.
+- **No error correction**: UDP does not check for or correct errors in the datagram.
+
+### **Which Protocol is Used When You Search for "www.google.com"?**
+
+When a user searches for **www.google.com** (or any website), a combination of **UDP** and **TCP** protocols are used during the process, specifically for **DNS resolution** and **HTTP/HTTPS requests**.
+
+1. **Step 1: DNS Lookup (UDP)**
+   - The first thing your computer does is resolve the domain name (www.google.com) into an IP address. This is done using the **Domain Name System (DNS)**.
+   - **UDP** is used for DNS queries because it's faster and does not require a connection. If the DNS query fails, it simply retries.
+   - The DNS query is sent to a DNS server, and the server responds with the IP address of **www.google.com**.
+   - **Protocol**: **UDP** (usually on port 53).
+
+2. **Step 2: Connecting to the Web Server (TCP)**
+   - Once your browser knows the IP address of **www.google.com**, it establishes a connection with Google's web server to retrieve the webpage.
+   - **TCP** is used here because HTTP (or HTTPS for secure connections) requires a reliable connection to ensure that the web page data (HTML, CSS, images) arrives correctly and in order.
+   - The browser uses the **TCP** protocol to establish a reliable connection with the web server via a **three-way handshake**.
+   - **Protocol**: **TCP** (usually on port 80 for HTTP, or port 443 for HTTPS).
+
+### **Summary of the Process:**
+- **DNS lookup**: Uses **UDP** for fast, connectionless domain name resolution.
+- **Fetching the webpage**: Uses **TCP** for reliable data transfer when retrieving the web page content.
+
+So, when you search for **www.google.com**, both **UDP (for DNS)** and **TCP (for web page retrieval)** are used.
