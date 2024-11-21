@@ -1,4 +1,3 @@
-
 ### **Basic SAST Interview Questions**
 
 1. **What is Static Application Security Testing (SAST)?**
