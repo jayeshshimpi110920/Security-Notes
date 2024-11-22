@@ -1,4 +1,4 @@
-OWASP Top 10(open web application security project) -[reduce the risk of security incident by working with world largest community of trusted ethical hackers]
+OWASP Top 10(open web application security project) -
 1)Broken Access Control (A01) | Users can access data or perform actions they are not authorized to.|| Unauthorized access, data modification, privilege escalation.||| Implement least privilege, use role-based access control (RBAC), and enforce proper authorization checks.
 2)Cryptographic Failures (A02)| Sensitive data (e.g., passwords, credit cards) is exposed due to weak encryption or insecure handling.|| Data theft, compliance violation (GDPR, PCI).||| Use strong encryption (e.g., AES), enforce HTTPS, and secure password storage (e.g., bcrypt).
 3)Injection (A03) [ Untrusted data is sent to interpreters (SQL, NoSQL, OS commands) leading to unintended execution.] Data loss, remote code execution, breaches.{ Use prepared statements, parameterized queries, input validation, and avoid dynamic queries.} 
@@ -10,13 +10,15 @@ OWASP Top 10(open web application security project) -[reduce the risk of securit
 9)Security Logging and Monitoring Failures (A09) [Inadequate logging and monitoring make it difficult to detect and respond to security incidents.]Undetected breaches, slow incident response, loss of forensic data. {{Implement centralized logging, enable detailed logs for critical actions, and use real-time monitoring and alerts.}}
 10)Server-Side Request Forgery (SSRF) (A10)[Server is tricked into making unauthorized requests to internal or external services.]	Access to internal resources, sensitive data leakage, network bypass. { Restrict URLs the server can request, use input validation, block internal IP ranges (127.0.0.1, 169.254.x.x).} 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
-1)XSS - {{Output encoding, Use CSP(content security policy), input sanitization}}
+1)XSS - {{Output encoding, Use CSP(content security policy), secure cookies attribute, input sanitization}} - [Data theft-stealing cookies/token/sensitive info & Account takeover]
 2)CSRF - Attacker trick a logged-in user into submitting an unwanted request- {{Use anti-CSRF token, same-site cookies and ensure proper user authentication}
 3)Insecure deserialization - {it happen when malicious data deserialized without validation}[[remote code execution/data tampering/privilege escalation]] 
 4)CORS(cross-origin resource sharing)- its a security features implemented by web brosers that allow or restrict resporces requested from domain outside. It helps to prevent malicious site from accessing sensitive information from another domain.
 5)RCE(Remote code execution)-allow attacker to run malicious code on remote system. if exploited, the attacker can take control of the target sys/app, execute arbitrary command -[arise due to various flaw{input validation/inscure deserialization/command injection/buffer overflows} ###sandboxing-run code in isolated environment to limit the impact of RCE if its occurs. @Disable unnecessary features-(plugins/fileupload/command injection) @Firewalls
 6)IDOR(insecure direct object reference)=it occures when application exposes internal object(e.g. database records,files or URLs) to users without authorization checks.*can access data belongs to other users ##(data breaches/account takeover/unauthorized actions) @implment roles based access contorl @input sanitization
 7)sensitive data exposure - ##Lack of encryption or weak cyptographic pratices@use strong encryption; implement data masking
+8) SSRF - Attacker manipulate a server into making unintended request to other server or resource, either within same system or external to it.
+ {{validate URLs, implemet whitelisting , block internal IP range}} [accessing internal services, leaking sensitive data or launching attacks on other system]
 
 Security Headers:------------------------------------------------------------------------------------------------------------------------------------
 Content-Security-Policy     Prevent XSS, data injection	        Content-Security-Policy: default-src 'self'    [default policy for loading/contorl javascript]
@@ -32,7 +34,8 @@ Set-Cookie (with flags)	    Secure cookie handling		Set-Cookie: Secure; HttpOnly
 CVE-Common Vulnerabilities and exposures - 
 
 Broken Authentication - Weak password policy/credential stuffing/session managment issues/lack of MFA/brute force attack/username enumeration/default credentials
-Authorization(broken access control) - forced browsing/IDOR/unrestricted file upload/ vertical & horizaontal privilage escalation/bypass access control -{ensure Role-based Access control, user role clearly defined}
+Authorization(broken access control) 
+Broken Access Control - directory traversal/forced browsing/IDOR/parameter tampering/privileged escalation/unrestricted file upload
 
 HTTP (80), HTTPS (443), FTP (21), SSH (22), and DNS (53).
 
@@ -42,7 +45,19 @@ Recon - Passive Recon(WHOIS:gather domain info/identify subdomain/public footpri
 Vulnerability identification (network vulnerability scanning/web application vulnerability/APi)
 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DevSecOps Workflow Example
+Plan: Identify security requirements during the planning phase.
+Develop: Use secure coding practices and perform code reviews.
+Build: Perform automated SAST and dependency checks during builds.
+Test: Conduct automated DAST and penetration testing.
+Release: Verify security configurations before deployment.
+Deploy: Use hardened environments and monitor deployment for vulnerabilities.
+Operate: Continuously monitor applications and infrastructure for threats.
+Respond: Respond to security incidents using automated or manual processes.
+
+
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1) Input Validation
 	SQL Injection: Try payloads like admin'--, ' OR 1=1--, etc.
@@ -96,5 +111,203 @@ Vulnerability identification (network vulnerability scanning/web application vul
 
 
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Both are (transport Layer protocol) that are used to move data over network.
+TCP(Transmission Control Protocol)- Connection-based- ordered data trasmission (required 3-way handshake connection) -(SYN, SYN_ACK, ACK) - Header parameter(Source/dest Port, Sequence Number, Acknowledgment No, Flag) -- USE(File transfer/EMAIL/WEB BRowsing)
+'
+UDP(User DataGram protocol)- Connectionless [More faster data trasmit/less reliable] 
+Each data packet is sent independetly, with no guarantee of delivery.
+-------------------------------------------------------------
+IAM(Identity and access management): is a framework policies and technologies to ensure that right users(identities) have right access(permission) to right resources within an organization.
+Keyconcept;
+1)Identification - Establish who the user is? every identity assigned with unique identifier, such as username, email address or system id
+2)Authentication - the process of verifying the claimed identity. common method includes passwords,biometrics,(MFA) and tokens.
+3)Authorization - Once authenticed, IAM system determines what action user allow to perform based on assignedd role and permission.
+4)Access Control Models -
+-->Role-Based Access control(RBAC) - assign permission to user based on there role
+-->Attribute-BAsed access control(ABAC) - use attribute(such as department, location, or job title) to determine access rights.
+-->Policy-based access control(PBAC) - use predefined policies to determine access basd on specific conditions.
+5)Identity federation - Allow users to access resources across different domains or organization using a single identity, typically via protocols like SAML or OAuth.
+6)Single Sign-On (SSO) - authenticate once and able to access the multiple application system without needing to log in again.
+7)Privileged Access Management (PAM): Focuses on managing and controlling access for privileged accounts(administrative or superuser accounts) to minimize security risks.
+8)Identity Lifecycle management: (provisioning and deprovisioning): Ensures that user account and permissions are created when needed and removed when no longer necessary.
+
+IAM systems, such as AWS IAM, Microsoft Azure AD, and Okta, help organizations enforce security policies, reduce the risk of unauthorized access, and comply with regulatory requirements.
+----------------------------------------------------------
+***EDR***Endpoint Detection and Response (EDR) is a security solution that monitors endpoints (like laptops, servers, etc.) in real time to detect, investigate, and respond to cyber threats. It provides:
+
+Real-time Monitoring: Tracks activity on endpoints.
+Threat Detection: Identifies threats using signatures, behavior analysis, and machine learning.
+Incident Response: Allows quick actions like isolating infected devices, stopping malicious processes, and removing harmful files.
+Threat Hunting: Proactively searches for hidden threats.
+Forensics: Helps analyze and investigate incidents for future protection.
+
+Popular EDR tools include Microsoft Defender, CrowdStrike, SentinelOne, and Carbon Black.
+---------------------------------------------------------
+NDR -(Network Detection and Response):
+Focus: Monitors network traffic to detect suspicious or malicious activity across the network using advanced analytics, machine learning, and behavioral analysis.
+Capabilities:
+Real-time Threat Detection: Identifies unusual patterns or anomalies in network behavior.
+Incident Response: Helps respond to threats by isolating affected areas or devices.
+Visibility: Provides full network visibility, including encrypted traffic analysis, lateral movement detection, and cloud traffic monitoring.
+Threat Hunting: Enables proactive search for hidden or advanced threats across the network.
+Popular NDR Tools: Darktrace, Vectra, ExtraHop.
+--------------------------------------------------------
+IDS - (Intrusion Detection System):
+Focus: Detects unauthorized access or malicious activity within a network by analyzing traffic patterns and comparing them against known attack signatures or abnormal behavior.
+Types:
+Network-based IDS (NIDS): Monitors traffic across the entire network.
+Host-based IDS (HIDS): Monitors activity on individual devices.
+Capabilities:
+Signature-based Detection: Identifies known threats based on predefined attack patterns.
+Anomaly-based Detection: Detects unusual behavior that deviates from normal network activity.
+Alerting: Sends alerts to security teams but does not actively block threats (unlike IPS).
+Popular IDS Tools: Snort, Suricata, OSSEC.
+--------------------------------------------------
+SIRT(Security Incident Response Team)-Primarily focused on responding to and managing incidents.
+SOC(Security Operations Center)-Focused on continuous monitoring, threat detection, and overall security management.
+other network protocol:
+--------------------------
+Network layer protocols;
+IP (Internet Protocol): Responsible for addressing and routing packets across networks. It has two main versions: IPv4 and IPv6.
+ICMP (Internet Control Message Protocol): Used for error messages and operational information in network communication, such as pinging devices.
+---------------------------
+Protocol	Port Number	Description
+HTTP	80	Hypertext Transfer Protocol for web traffic.
+HTTPS	443	Secure version of HTTP using SSL/TLS.
+FTP	21	File Transfer Protocol for transferring files.
+SMTP	25	Simple Mail Transfer Protocol for sending emails.
+DNS	53	Domain Name System for resolving domain names to IPs.
+SSH	22	Secure Shell for encrypted remote login.
+Telnet	23	Unencrypted text communication over a network.
+------------------------------------------
+SIEM (Security Information and Event Management)
+Purpose: Collects and analyzes security data from various sources to detect and respond to threats.
+Key Features:
+Data Collection: Aggregates logs and security data.
+Real-time Monitoring: Continuously watches for suspicious activities.
+Event Correlation: Identifies patterns indicating security incidents.
+Threat Detection: Uses rules and analytics to find anomalies.
+Examples: Splunk, IBM QRadar, LogRhythm.
+--------------------------------------------
+SOAR (Security Orchestration, Automation, and Response)
+Purpose: Integrates security tools and automates incident response.
+Key Features:
+Integration: Connects various security systems.
+Automation: Streamlines repetitive tasks in incident response.
+Incident Response Playbooks: Provides workflows for consistent responses.
+Collaboration: Enhances teamwork during incidents.
+Examples: Palo Alto Cortex XSOAR, IBM Resilient, Splunk Phantom.
+Key Difference:
+SIEM focuses on data collection and threat detection, while SOAR emphasizes automating and orchestrating incident response.
+--------------------------------------------
