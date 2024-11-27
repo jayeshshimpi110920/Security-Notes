@@ -4,6 +4,24 @@ Threat modeling is a structured process to identify, assess, and mitigate securi
 
 >**Threat modeling** is a process to identify potential security threats to a system, understand how those threats could harm it, and plan ways to protect against them. It's like creating a blueprint to spot weaknesses before attackers do and making a plan to fix them.
 ---
+Majorly focus of following for threat modeling
+* **Identify Assets** - These are the valuable components of the system that need protection. It could be sensitive data (like passwords or personal information), critical infrastructure, or services.
+> User passwords, personal data, app functionality.
+* **Identify Threats** - Think about who or what could harm these assets. This could be hackers, malicious insiders, natural disasters, or even software bugs. You also consider different types of attacks, like data breaches, denial of service (DoS), or unauthorized access.
+> Hackers trying to steal passwords, insiders accessing data, accidental data loss due to server failure.
+* **Identify Vulnerabilities** - Vulnerabilities are weaknesses in the system that could be exploited by threats. This could be insecure coding, poor encryption, weak passwords, etc.
+> Weak password storage (unencrypted passwords), lack of two-factor authentication (2FA), no backup system.
+* **Analyze the Impact** - What would happen if the threat successfully exploits a vulnerability? Would it result in data loss, service downtime, or reputational damage? This helps assess how serious each threat is.
+> If a hacker steals passwords, users' private information could be exposed, and your app's reputation could be damaged.
+* **Determine Mitigations** - Once you know the threats and vulnerabilities, figure out how to prevent or reduce their impact. This could involve fixing weaknesses, adding security controls, encrypting data, or setting up intrusion detection systems.
+> Use strong encryption for password storage, implement 2FA, back up data regularly, monitor for unusual activities.
+* **Prioritize** - Not all threats are equal. Some are more likely or damaging than others. Prioritize threats based on their likelihood and impact, so you can focus on the most critical issues first.
+> The most critical issue might be weak password storage, as it can lead to a major security breach, so you fix that first.
+
+---
+
+
+
 
 ### **Key Goals of Threat Modeling**
 1. **Identify Security Risks**:
