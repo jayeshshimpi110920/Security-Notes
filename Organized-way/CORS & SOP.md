@@ -101,6 +101,22 @@ CORS makes use of 2 HTTP headers:
 <img width="386" alt="{D724524A-3B4C-4CF2-A543-8807E14588C4}" src="https://github.com/user-attachments/assets/673e63af-29db-45e8-b4be-325eaffc6aa4">
 <br>
 
+```
+Access-Control-Allow-Origin: *   (All-site allow)
+Access-Control-Allow-Origin: <origin> (allow perticular domain to allow to access resource)
+Access-Control-Allow-Origin: null 
+```
+
+## Access-Control-Allow-Credentials (response header)
+<img width="420" alt="{66277CBE-E30D-4A43-A9AB-3C3F7E57867A}" src="https://github.com/user-attachments/assets/99e232dc-ed50-4608-8e8e-907429b41aa9">
+<br>
+
+
+---
+
+## CORS Vulnerabilities :
+CORS vulnerabilies arise from CORS configuration issues-
+
 
 
 
