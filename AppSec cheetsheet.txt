@@ -1,3 +1,4 @@
+HTTP (80), HTTPS (443), FTP (21), SSH (22), and DNS (53).
 OWASP Top 10(open web application security project) -
 1)Broken Access Control (A01) | Users can access data or perform actions they are not authorized to.|| Unauthorized access, data modification, privilege escalation.||| Implement least privilege, use role-based access control (RBAC), and enforce proper authorization checks.
 2)Cryptographic Failures (A02)| Sensitive data (e.g., passwords, credit cards) is exposed due to weak encryption or insecure handling.|| Data theft, compliance violation (GDPR, PCI).||| Use strong encryption (e.g., AES), enforce HTTPS, and secure password storage (e.g., bcrypt).
@@ -30,6 +31,62 @@ Referrer-Policy	            Control referrer information	Referrer-Policy: no-ref
 Cross-origin-resource-shareing     Control CORS                	Access-Control-Allow-Origin: https://trusted.com
 Set-Cookie (with flags)	    Secure cookie handling		Set-Cookie: Secure; HttpOnly; SameSite=Strict
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+OWASP API Security Top 10 (2023) – Explained with Examples
+1. Broken Object Level Authorization (BOLA)** --------Issue:API doesn’t verify if a user is authorized to access a specific object.
+API request: GET /api/user/123/orders
+Attacker changes 123 to 124 and accesses another user's order.
+Fix: Implement proper object-level authorization checks.
+
+2. Broken Authentication ------Issue: Weak authentication allows attackers to impersonate users.
+API allows logging in with weak tokens (12345-token).
+Attacker guesses or reuses a leaked token to log in.
+Fix: Enforce strong authentication (OAuth, JWT, MFA).
+
+3. Broken Object Property Level Authorization ----- Issue:Users can modify restricted fields in API requests.
+PATCH /api/user/123 with {"role": "admin"}
+If API lacks property-level validation, a normal user can become an admin.
+Fix: Restrict access to sensitive fields at the API level.
+
+4. Unrestricted Resource Consumption  ------Issue : API allows unlimited requests, leading to excessive resource use.
+Attacker sends thousands of requests to GET /api/search?q=item, crashing the system.
+Fix: Implement rate limiting, quotas, and request validation.
+
+5. Broken Function Level Authorization ------Issue: Regular users access admin-only API functions.
+POST /api/admin/delete_user/123
+A normal user can delete accounts due to missing authorization checks.
+Fix: Implement role-based access control (RBAC).
+
+6. Unrestricted Access to Sensitive Business Flows  ------ Issue: API doesn’t limit automated interactions with sensitive features.
+A bot automates unlimited coupon generation (POST /api/coupons/generate).
+Fix: Add rate limits, CAPTCHAs, and abuse detection mechanisms.
+
+7. Server-Side Request Forgery (SSRF) ----- Issue: API fetches URLs without validation, allowing internal network access.
+Attacker submits GET /api/fetch?url=http://localhost/admin to access internal data.
+Fix: Validate and allowlist external URLs.
+
+8. Security Misconfiguration --------- Issue: API exposes sensitive data due to misconfigured settings.
+Debug mode is enabled, exposing API keys in error messages.
+Fix: Disable debug mode in production, review configurations.
+
+9. Improper Inventory Management -- Issue : Exposed old or undocumented APIs create security risks.
+GET /api/v1/user-info (old version) is still accessible with weak security.
+Fix: Maintain an updated API inventory and deprecate old endpoints.
+
+10. Unsafe Consumption of APIs ----  Issue: Trusting third-party APIs without security checks.
+Application blindly trusts responses from GET /api/external-data, which could be compromised.
+Fix: Validate and sanitize data from third-party APIs.
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 CVE-Common Vulnerabilities and exposures - 
 
@@ -37,7 +94,7 @@ Broken Authentication - Weak password policy/credential stuffing/session managme
 Authorization(broken access control) 
 Broken Access Control - directory traversal/forced browsing/IDOR/parameter tampering/privileged escalation/unrestricted file upload
 
-HTTP (80), HTTPS (443), FTP (21), SSH (22), and DNS (53).
+
 
 pre-engagement phase  - 1)understand about scope 2) testing approch 3) legal and compliance
 Recon - Passive Recon(WHOIS:gather domain info/identify subdomain/public footprint:social media,data leaks/google dorking)
@@ -123,74 +180,6 @@ Respond: Respond to security incidents using automated or manual processes.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-OWASP API Security Top 10 (2023) – Explained with Examples
-
-**1. Broken Object Level Authorization (BOLA)**
-**Issue**: API doesn’t verify if a user is authorized to access a specific object.
-**Example:**
-API request: GET /api/user/123/orders
-Attacker changes 123 to 124 and accesses another user's order.
-**Fix**: Implement proper object-level authorization checks.
-
-**2. Broken Authentication**
-**Issue:** Weak authentication allows attackers to impersonate users.
-**Example:**
-API allows logging in with weak tokens (12345-token).
-Attacker guesses or reuses a leaked token to log in.
-**Fix:** Enforce strong authentication (OAuth, JWT, MFA).
-
-**3. Broken Object Property Level Authorization**
-**Issue:** Users can modify restricted fields in API requests.
-**Example:**
-PATCH /api/user/123 with {"role": "admin"}
-If API lacks property-level validation, a normal user can become an admin.
-**Fix:** Restrict access to sensitive fields at the API level.
-
-**4. Unrestricted Resource Consumption**
-**Issue:** API allows unlimited requests, leading to excessive resource use.
-**Example:**
-Attacker sends thousands of requests to GET /api/search?q=item, crashing the system.
-**Fix:** Implement rate limiting, quotas, and request validation.
-
-**5. Broken Function Level Authorization**
-**Issue:** Regular users access admin-only API functions.
-**Example:**
-POST /api/admin/delete_user/123
-A normal user can delete accounts due to missing authorization checks.
-**Fix:** Implement role-based access control (RBAC).
-
-**6. Unrestricted Access to Sensitive Business Flows**
-**Issue:** API doesn’t limit automated interactions with sensitive features.
-**Example:**
-A bot automates unlimited coupon generation (POST /api/coupons/generate).
-**Fix:** Add rate limits, CAPTCHAs, and abuse detection mechanisms.
-
-**7. Server-Side Request Forgery (SSRF)**
-**Issue:** API fetches URLs without validation, allowing internal network access.
-**Example:**
-Attacker submits GET /api/fetch?url=http://localhost/admin to access internal data.
-**Fix:** Validate and allowlist external URLs.
-
-**8. Security Misconfiguration**
-**Issue:** API exposes sensitive data due to misconfigured settings.
-**Example:**
-Debug mode is enabled, exposing API keys in error messages.
-**Fix:** Disable debug mode in production, review configurations.
-
-9. Improper Inventory Management
-**Issue:** Exposed old or undocumented APIs create security risks.
-**Example:**
-GET /api/v1/user-info (old version) is still accessible with weak security.
-**Fix:** Maintain an updated API inventory and deprecate old endpoints.
-
-**10. Unsafe Consumption of APIs**
-**Issue:** Trusting third-party APIs without security checks.
-**Example:**
-Application blindly trusts responses from GET /api/external-data, which could be compromised.
-**Fix:** Validate and sanitize data from third-party APIs.
-
-
 
 
 
