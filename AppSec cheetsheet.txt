@@ -187,6 +187,40 @@ Respond: Respond to security incidents using automated or manual processes.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+CSRF ;;;
+🔍 1. Check for CSRF Token
+☑ Does the request contain a CSRF token?
+☑ Is the CSRF token unique per request/session?
+☑ Is the CSRF token validated on the server-side?
+
+🔍 2. Test by Sending a Forged Request
+☑ Can a request be executed without user interaction?
+☑ Try submitting a crafted HTML form—does the action succeed?
+
+🔍 3. Check Authentication Mechanism
+☑ Does the app rely only on session cookies for authentication?
+☑ Try removing authentication headers—does the request still work?
+
+🔍 4. Test HTTP Methods (GET vs. POST)
+☑ Can state-changing actions (e.g., transfers, deletions) be executed via GET?
+☑ Try changing a POST request to GET—does it execute?
+
+🔍 5. Check SameSite Cookie Attribute
+☑ Is the SameSite cookie attribute set to Strict or Lax?
+☑ If SameSite=None, is there a proper CSRF token in place?
+
+🔍 6. Analyze Response Headers
+☑ Check for X-Frame-Options to prevent Clickjacking attacks.
+☑ Does the app set Content-Security-Policy (CSP) to restrict cross-origin requests?
+
+🔍 7. Test for Multi-Step CSRF Bypass
+☑ Can an attacker steal a valid CSRF token via XSS or Referer leaks?
+☑ Does the application reuse the same CSRF token across sessions?
+
+🔍 8. Check for Impact
+☑ Can an attacker perform actions like fund transfers, password changes, or account deletions?
+☑ Is there an actual risk based on the application’s functionality?
+
 
 
 
