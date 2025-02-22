@@ -1,4 +1,4 @@
-HTTP (80), HTTPS (443), FTP (21), SSH (22), and DNS (53).
+HTTP (80), HTTPS (443), FTP (21), SSH (22), and DNS (53).  ( xss-reflected-xss, open redirect, sensitive information discoldure, IDOR , sql-injection)
 OWASP Top 10(open web application security project) -
 1)Broken Access Control (A01) | Users can access data or perform actions they are not authorized to.|| Unauthorized access, data modification, privilege escalation.||| Implement least privilege, use role-based access control (RBAC), and enforce proper authorization checks.
 2)Cryptographic Failures (A02)| Sensitive data (e.g., passwords, credit cards) is exposed due to weak encryption or insecure handling.|| Data theft, compliance violation (GDPR, PCI).||| Use strong encryption (e.g., AES), enforce HTTPS, and secure password storage (e.g., bcrypt).
