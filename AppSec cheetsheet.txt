@@ -20,6 +20,11 @@ OWASP Top 10(open web application security project) -
 7)sensitive data exposure - ##Lack of encryption or weak cyptographic pratices@use strong encryption; implement data masking
 8) SSRF - Attacker manipulate a server into making unintended request to other server or resource, either within same system or external to it.
  {{validate URLs, implemet whitelisting , block internal IP range}} [accessing internal services, leaking sensitive data or launching attacks on other system]
+**Collaborator -- Used to detect blind vulnerabilities that do not immediately return results.
+Helps find blind XSS, SSRF, and out-of-band interactions.
+Generates a unique Collaborator URL and monitors interactions.
+Injecting a payload into a website and checking if the backend makes a DNS or HTTP request to the Burp Collaborator server, revealing SSRF or out-of-band vulnerabilities.
+**sequencer - randomness of token
 
 Security Headers:------------------------------------------------------------------------------------------------------------------------------------
 Content-Security-Policy     Prevent XSS, data injection	        Content-Security-Policy: default-src 'self'    [default policy for loading/contorl javascript]
