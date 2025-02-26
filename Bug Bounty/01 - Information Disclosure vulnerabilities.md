@@ -8,3 +8,7 @@ Following are the step approch to find out information disclosure vul.
 ![image](https://github.com/user-attachments/assets/34049c04-69ff-45df-a842-69909163b973)
 
 NOTE: try to navigate with path which is **_Disallow_** , if nevigate , boom see something intersting we might got. 
+
+2) In above we discover ```/robots.txt``` path only, there might be possible more hidden path
+   - TO find out for more directory, we use tool **FEROXBUSTER**- kind of fuzzing tools, to find more hidden path that might contant sensitive information.
+   - `./feroxbuster --url https://target.com --depth 2 --wordlist words`
