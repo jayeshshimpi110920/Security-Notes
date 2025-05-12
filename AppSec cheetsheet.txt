@@ -39,7 +39,7 @@ Set-Cookie (with flags)	    Secure cookie handling		Set-Cookie: Secure; HttpOnly
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 OWASP API Security Top 10 (2023) – Explained with Examples
-1. Broken Object Level Authorization (BOLA)** --------Issue:API doesn’t verify if a user is authorized to access a specific object.
+1. Broken Object Level Authorization (BOLA)** --------Issue : API doesn’t verify if a user is authorized to access a specific object.
 API request: GET /api/user/123/orders
 Attacker changes 123 to 124 and accesses another user's order.
 Fix: Implement proper object-level authorization checks.
